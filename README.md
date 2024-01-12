@@ -1,2 +1,2 @@
-# hello-world
+# startup
 CS 260
