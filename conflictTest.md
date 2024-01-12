@@ -1,3 +1,3 @@
 test
 GitHub test
-GitHub test 2
+GitHub test * *
