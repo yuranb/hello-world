@@ -1,2 +1,2 @@
 # hello-world
-CS 236
+CS 260
