@@ -1,0 +1,1 @@
+In this homework, I learned how to modify files and submit changes on GitHub, make changes to the same file in both local and remote repositories, and then attempt to merge these changes to synchronize the code.
