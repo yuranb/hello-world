@@ -8,7 +8,7 @@ A weather web app made with HTML, CSS, JS, and API. Our "Weather Query Applicati
 ## Feature Overview
 This application offers the following key features:
 - **City Weather Query**: Users can enter the name of any city to obtain real-time weather information for that city.
-- **Data Display**: Displays temperature, wind speed, and weather conditions.
+- **Data Display**: Displays temperature, wind speed, Humidity, and weather Description.
 - **User-Friendly Interface**: A simple and clear interface for an easy and comprehensive reading of data.
 
 ## Technical Implementation
