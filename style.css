@@ -54,3 +54,11 @@ button {
         margin: 5px 0;
     }
 }
+
+.weather-result, .login-section {
+    margin-bottom: 20px;
+}
+
+.weather-result img {
+    width: 50px; 
+}
