@@ -47,3 +47,10 @@ button {
     border: none;
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
