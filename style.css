@@ -62,3 +62,7 @@ button {
 .weather-result img {
     width: 50px; 
 }
+
+.weather-result p, .database-data-placeholder ul, .websocket-data-placeholder p {
+    margin: 10px 0;
+}
