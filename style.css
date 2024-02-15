@@ -15,3 +15,10 @@ header, footer {
     padding: 1rem;
     text-align: center;
 }
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
