@@ -30,7 +30,7 @@ For this deliverable, I focused on building out the structure of my application 
 
 ### HTML Pages
 - **Index Page (`index.html`)**: This is the main page of the application. It provides a search functionality where users can enter a city name to fetch weather information.
-- **About Page (`about.html`)**: This page provides information about the Weather Query application .
+- **About Page (`about.html`)**: This page provides information about the Weather Query application.
 
 ### Links
 - Navigation between the `index.html` and `about.html` is facilitated through links in the navigation bar and the footer.
@@ -53,6 +53,32 @@ For this deliverable, I focused on building out the structure of my application 
 - Integration with a real-time weather API to fetch and display live weather data.
 - Implementing user authentication to enable personalized experiences, such as saving user search history.
 - Real-time data updates using WebSocket to deliver live weather information.
+
+# CSS Deliverable
+
+For this deliverable, I focused on enhancing the visual appearance of my application by applying CSS styles. 
+
+## Styling Overview
+
+### Header, Footer, and Main Content Body
+- **Header and Footer**: I applied a consistent background color and text color to create a unified look across the application. Padding was adjusted for better spacing, and text alignment was set to center for a cleaner appearance.
+- **Main Content Body**: Adequate padding was added around the main content area to ensure the text and other elements are not too close to the edge of the browser window, improving readability and aesthetics.
+
+### Navigation Elements
+- I removed the underlines from anchor elements within the navigation to create a cleaner look. Additionally, I changed the color of these links to enhance visibility and integrate them more seamlessly with the overall design theme.
+
+### Responsive Design
+- My application now adjusts gracefully to different window sizes and devices. I employed media queries to ensure the layout remains functional and visually appealing across a wide range of devices, from mobile phones to desktop monitors.
+
+### Application Elements
+- I used good contrast and whitespace throughout the application to make the content easy to read and to visually separate different sections of the app.
+
+### Application Text Content
+- Consistent fonts were used across the application to maintain a cohesive look and feel. This consistency helps in reinforcing the application's identity and improves the user experience.
+
+### Application Images
+- As of now, the application does not include any images, so no specific styling was applied in this area. However, placeholders for weather icons are prepared to be dynamically updated based on the weather data fetched from the API in future developments.
+
 
 
 
