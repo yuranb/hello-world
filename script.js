@@ -49,10 +49,17 @@ function updateQueryHistoryDisplay() {
 function mockWebSocketData() {
     setInterval(() => {
         const data = mockData.shift();
-        
+
         // Update temperature, humidity, and wind speed in the DOM
         realtimeTempElement.textContent = `${data.temperature}`;
         humidityElement.textContent = `${data.humidity}%`;
         windSpeedElement.textContent = `${data.windSpeed} m/s`;
     }, 5000); // Update every 5 seconds
+}
+
+// Display fetched weather data on the webpage
+function displayWeather(data) {
+    realtimeTempElement.textContent = `${data.temperature} `;
+    humidityElement.textContent = `${data.humidity}%`;
+    windSpeedElement.textContent = `${data.windSpeed} m/s`;
 }
