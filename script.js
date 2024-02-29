@@ -44,3 +44,15 @@ function updateQueryHistoryDisplay() {
     queryHistoryList.appendChild(li);
     });
 }
+
+// Simulate real-time data updates using mock data
+function mockWebSocketData() {
+    setInterval(() => {
+        const data = mockData.shift();
+        
+        // Update temperature, humidity, and wind speed in the DOM
+        realtimeTempElement.textContent = `${data.temperature}`;
+        humidityElement.textContent = `${data.humidity}%`;
+        windSpeedElement.textContent = `${data.windSpeed} m/s`;
+    }, 5000); // Update every 5 seconds
+}
