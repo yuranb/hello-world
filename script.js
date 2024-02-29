@@ -7,11 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let mockDatabase = {
         queryHistory: [],
     };
-    
+
 // Add event listener for login form submission
 loginForm.addEventListener('submit', function(e) {
 e.preventDefault();
 const usernameEl = document.querySelector('.login-form input[type="text"]');
 localStorage.setItem("username", usernameEl.value);
 alert(`User logged in: ${usernameEl.value}`);
+});
+
+// Handle weather search form submission
+weatherSearchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const cityName = this.querySelector('input[type="text"]').value;
+    fetchWeather(cityName);
+    mockDatabase.queryHistory.push(cityName);
+    updateQueryHistoryDisplay();
 });
