@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const queryHistoryList = document.querySelector('.database-data-placeholder ul');
     const realtimeTempElement = document.getElementById('realtime-temp');
     // Define a mock database to store query history
-let mockDatabase = {
-    queryHistory: [],
-  };
+    let mockDatabase = {
+        queryHistory: [],
+    };
+    
+// Add event listener for login form submission
+loginForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const usernameEl = document.querySelector('.login-form input[type="text"]');
+localStorage.setItem("username", usernameEl.value);
+alert(`User logged in: ${usernameEl.value}`);
+});
