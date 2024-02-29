@@ -79,6 +79,12 @@ For this deliverable, I focused on enhancing the visual appearance of my applica
 ### Application Images
 - As of now, the application does not include any images, so no specific styling was applied in this area. However, placeholders for weather icons are prepared to be dynamically updated based on the weather data fetched from the API in future developments.
 
+# JavaScript deliverable
+For my JavaScript deliverable, I developed a weather query application tailored for individual users, integrating essential and advanced functionalities. The application:
 
+- **Login** - The system uses local storage to imitate a database for storing user data. This will pave the way for a more advanced authentication system in the future.
+- **database** - Manages query histories in local storage. The goal is to evolve into a comprehensive database integration.
+- **WebSocket** -  This code simulates live data updates using setInterval and prepares for WebSocket integration for real-time interactions.
+- **application logic** -  It also dynamically adjusts UI components, such as highlights and rankings, in response to user inputs.
 
 
