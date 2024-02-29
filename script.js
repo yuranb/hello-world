@@ -34,3 +34,13 @@ function fetchWeather(city) {
     .then((response) => response.json())
     .then((data) => displayWeather(data));
 }
+
+// Function to update query history display on the webpage
+function updateQueryHistoryDisplay() {
+    queryHistoryList.innerHTML = '';
+    mockDatabase.queryHistory.forEach(query => {
+    const li = document.createElement('li');
+    li.textContent = `Query: ${query}`;
+    queryHistoryList.appendChild(li);
+    });
+}
