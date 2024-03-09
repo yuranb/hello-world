@@ -17,7 +17,8 @@
     </header>
     <main>
         <section class="weather-search">
-            <h2>Find Weather</h2>
+            <h2>Check the Weather</h2>
+            <p>Note: Please enter the first letter of the city name in capital letters.</p>
             <form>
                 <input type="text" placeholder="Enter city name" required>
                 <button type="submit">Search</button>
@@ -33,22 +34,17 @@
             <p>Wind Speed: <span class="wind-speed">--</span> km/h</p>
             <!-- Weather results will be displayed here after search -->
         </section>
-        <section class="login-section">
+        <section class="login-section" action="history.html" method="get">
             <!-- Login placeholder, including user name display -->
-            <form class="login-form">
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button type="submit">Login</button>
+            <h1>Welcome</h1>
+            <p>Login to look your query history</p>
+            <form method="get" action="history.html">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name here" />
+              <button type="submit">Login</button>
             </form>
         </section>
-        <section class="database-data-placeholder">
-            <!-- Database data placeholder -->
-            <h2>User Query History</h2>
-            <ul>
-                <li>Query 1 - Placeholder</li>
-                <li>Query 2 - Placeholder</li>
-            </ul>
-        </section>
+
         <section class="websocket-data-placeholder">
             <!-- WebSocket data placeholder  -->
             <h2>Realtime Weather Updates</h2>
@@ -56,7 +52,6 @@
         </section>
     </main>
     <footer>
-        <p>Note: Please enter the first letter of the city name in capital letters.</p>
         <a href="https://github.com/yuranb/startup">GitHub</a>
     </footer>
     <script src="script.js"></script>
