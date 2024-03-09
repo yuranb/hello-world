@@ -28,9 +28,9 @@ weatherSearchForm.addEventListener('submit', function(e) {
 
 // Function to fetch weather data using OpenWeatherMap API
 function fetchWeather(city) {
-    const apiKey = "13e786b2255800d48474a6fdbcd071dc";
+    const apiKey = "ea9f40b3e63d13331a1f878412420312";
     fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`
     )
     .then((response) => response.json())
     .then((data) => displayWeather(data));
