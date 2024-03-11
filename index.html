@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Query | Home</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -20,8 +21,8 @@
             <h2>Check the Weather</h2>
             <p>Note: Please enter the first letter of the city name in capital letters.</p>
             <form>
-                <input type="text" placeholder="Enter city name" required>
-                <button type="submit">Search</button>
+                <input type="text" class="search-bar" placeholder="Enter city name" required>
+                <button class="btn btn-primary">search</button>
             </form>
         </section>
         <section class="weather-result">
@@ -29,19 +30,17 @@
             <!-- placeholder-for the Application images -->
             <img src="placeholder-icon.png" alt="Weather Icon" class="icon" />
             <p>Description: <span class="description">--</span></p>
-            <p>Temperature: <span class="temperature">--</span> °F</p>
-            <p>Humidity: <span class="humidity">--</span>%</p>
-            <p>Wind Speed: <span class="wind-speed">--</span> km/h</p>
+            <p>Temperature: <span class="temperature">--</span></p>
+            <p>Humidity: <span class="humidity">--</span></p>
+            <p>Wind Speed: <span class="wind-speed">--</span> </p>
             <!-- Weather results will be displayed here after search -->
         </section>
         <section class="login-section" action="history.html" method="get">
             <!-- Login placeholder, including user name display -->
             <h1>Welcome</h1>
             <p>Login to look your query history</p>
-            <form method="get" action="history.html">
-              <label for="name">Name</label>
               <input type="text" id="name" placeholder="Your name here" />
-              <button type="submit">Login</button>
+              <button class="btn btn-primary" onclick="login()">Login</button>
             </form>
         </section>
 
@@ -54,14 +53,8 @@
     <footer>
         <a href="https://github.com/yuranb/startup">GitHub</a>
     </footer>
-    <script src="script.js"></script>
+
     <!-- Placeholder for third-party service calls -->
-    <script>
-        // Placeholder for future implementation
-        function fetchWeather(city) {
-            console.log(`Future implementation will fetch weather for ${city}`);
-            // Implement API call to fetch weather data
-        }
-    </script>
+
 </body>
 </html>
