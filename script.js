@@ -8,10 +8,18 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather.apiKey}&units=imperial`
             )
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.status === 404) {
+                    throw new Error('Invalid city name');
+                }
+                return response.json();
+            })
             .then((data) => displayWeather(data))
-            .catch(error => console.error("Error fetching weather data:", error));
-        }
+            .catch(error => {
+                console.error("Error fetching weather data:", error);
+                window.alert(error.message);
+            });
+    }
 
 // Function to update query history display on the webpage
 /*function updateQueryHistoryDisplay() {
@@ -47,4 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             searchBar.value = ""; 
         }
     });
+
+        // Initial weather display for Provo
+        fetchWeather("Provo");
 });
