@@ -1,3 +1,9 @@
+function login() {
+    const nameEl = document.querySelector("#name");
+    localStorage.setItem("userName", nameEl.value);
+    window.location.href = "history.html";
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const weather = {
         apiKey : "ea9f40b3e63d13331a1f878412420312",
@@ -14,7 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return response.json();
             })
-            .then((data) => displayWeather(data))
+            .then((data) => {
+                displayWeather(data);
+                saveQueryHistory(city);
+            })
             .catch(error => {
                 console.error("Error fetching weather data:", error);
                 window.alert(error.message);
@@ -47,10 +56,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initial weather display for Provo
         fetchWeather("Provo");
+
+    function saveQueryHistory(city) {
+        const queryHistory = JSON.parse(localStorage.getItem('queryHistory')) || [];
+        queryHistory.push(city);
+        localStorage.setItem('queryHistory', JSON.stringify(queryHistory));
+    }
+
+
 });
 
-    function login() {
-        const nameEl = document.querySelector("#name");
-        localStorage.setItem("userName", nameEl.value);
-        window.location.href = "history.html";
-    }
+
