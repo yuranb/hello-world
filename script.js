@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Function to fetch weather data using OpenWeatherMap API
-    function fetchWeather(city) {
+    function fetchWeather(city,isInitial = false) {
             fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather.apiKey}&units=imperial`
             )
@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then((data) => {
                 displayWeather(data);
-                saveQueryHistory(city);
+                if (!isInitial) { // Save search history only in non-initial cases
+                    saveQueryHistory(city);
+                }
             })
             .catch(error => {
                 console.error("Error fetching weather data:", error);
@@ -56,8 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
             searchBar.value = ""; 
         }
     });
-
-
+    
+    // Display default Provo weather
+    fetchWeather('Provo', true);
 
     function saveQueryHistory(city) {
         //const userName = localStorage.getItem('userName');
