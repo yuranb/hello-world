@@ -55,6 +55,10 @@ button {
     }
 }
 
+#home .weather-search {
+    display: none;
+  }
+  
 .weather-result, .login-section {
     margin-bottom: 20px;
 }

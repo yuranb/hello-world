@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body id="home">
     <header>
         <h1>Weather Query!</h1>
         <nav>
@@ -17,6 +17,13 @@
         </nav>
     </header>
     <main>
+        <section class="login-section" action="history.html" method="get">
+            <h1>Check the Weather</h1>
+            <h3>Log in to use</h3>
+              <input type="text" id="name" placeholder="Enter your name" />
+              <button class="btn btn-primary" onclick="login()">Login</button>
+            </form>
+        </section>
         <section class="weather-search">
             <h2>Check the Weather</h2>
             <p>Default display of weather in Provo</p>
@@ -35,20 +42,7 @@
             <p>Wind Speed: <span class="wind-speed">--</span> </p>
             <!-- Weather results will be displayed here after search -->
         </section>
-        <section class="login-section" action="history.html" method="get">
-            <!-- Login placeholder, including user name display -->
-            <h1>My Query History</h1>
-            <p>Login to view my query history</p>
-              <input type="text" id="name" placeholder="Your name here" />
-              <button class="btn btn-primary" onclick="login()">Login</button>
-            </form>
-        </section>
 
-        <section class="websocket-data-placeholder">
-            <!-- WebSocket data placeholder  -->
-            <h2>Realtime Weather Updates</h2>
-            <p>Temperature: <span id="realtime-temp">--</span> °F</p>
-        </section>
     </main>
     <footer>
         <a href="https://github.com/yuranb/startup">GitHub</a>

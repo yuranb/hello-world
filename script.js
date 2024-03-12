@@ -82,7 +82,7 @@ function loadQueryHistory() {
 
 
     queryHistoryEl.innerHTML = ''; //Empty element content
-    queryHistoryEl.innerHTML = `<h3>Welcome ${userName}</h3>`;
+    queryHistoryEl.innerHTML = `<h3>Welcome, ${userName}</h3>`;
     queryHistory.forEach(query => {
         const listItem = document.createElement('li');
         listItem.textContent = query;
