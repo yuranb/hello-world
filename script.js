@@ -20,17 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.alert(error.message);
             });
     }
-
-// Function to update query history display on the webpage
-/*function updateQueryHistoryDisplay() {
-    queryHistoryList.innerHTML = '';
-    mockDatabase.queryHistory.forEach(query => {
-    const li = document.createElement('li');
-    li.textContent = `Query: ${query}`;
-    queryHistoryList.appendChild(li);
-    });
-}*/
-
     // Display fetched weather data on the webpage
     function displayWeather(data) {
         const { name } = data;
@@ -59,3 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial weather display for Provo
         fetchWeather("Provo");
 });
+
+    function login() {
+        const nameEl = document.querySelector("#name");
+        localStorage.setItem("userName", nameEl.value);
+        window.location.href = "history.html";
+    }
