@@ -66,4 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+function loadQueryHistory() {
+    const queryHistoryEl = document.querySelector('#query-history');
+    const queryHistory = JSON.parse(localStorage.getItem('queryHistory')) || [];
+    const userName = localStorage.getItem('userName') || 'Mystery user';
+
+    queryHistoryEl.innerHTML = ''; //Empty element content
+    queryHistoryEl.innerHTML = `<h3>Query History for ${userName}</h3>`;
+    queryHistory.forEach(query => {
+        const listItem = document.createElement('li');
+        listItem.textContent = query;
+        queryHistoryEl.appendChild(listItem);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadQueryHistory);
+
 
