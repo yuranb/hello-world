@@ -17,6 +17,24 @@
         </nav>
     </header>
     <main>
+        <section class="weather-search">
+            <h2>Check the Weather</h2>
+            <p>Default display of weather in Provo</p>
+            <form>
+                <input type="text" class="search-bar" placeholder="Enter city name" required>
+                <button class="btn btn-primary">search</button>
+            </form>
+        </section>
+        <section class="weather-result">
+            <p>City: <span class="city-name">City Name</span></p>
+            <!-- placeholder-for the Application images -->
+            <img src="placeholder-icon.png" alt="Weather Icon" class="icon" />
+            <p>Description: <span class="description">--</span></p>
+            <p>Temperature: <span class="temperature">--</span></p>
+            <p>Humidity: <span class="humidity">--</span></p>
+            <p>Wind Speed: <span class="wind-speed">--</span> </p>
+            <!-- Weather results will be displayed here after search -->
+        </section>
         <section class="database-data-placeholder">
             <h2>User Query History</h2>
             <ul id="query-history"></ul>

@@ -1,5 +1,8 @@
+let userName = localStorage.getItem('userName') || 'Mystery user'; 
+
 function login() {
     const nameEl = document.querySelector("#name");
+    userName = nameEl.value;
     localStorage.setItem("userName", nameEl.value);
     window.location.href = "history.html";
 }
@@ -54,13 +57,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-        // Initial weather display for Provo
-        fetchWeather("Provo");
+
 
     function saveQueryHistory(city) {
-        const queryHistory = JSON.parse(localStorage.getItem('queryHistory')) || [];
+        //const userName = localStorage.getItem('userName');
+        const queryHistoryKey = `queryHistory_${userName}`;
+        const queryHistory = JSON.parse(localStorage.getItem(queryHistoryKey)) || [];
         queryHistory.push(city);
-        localStorage.setItem('queryHistory', JSON.stringify(queryHistory));
+        localStorage.setItem(queryHistoryKey, JSON.stringify(queryHistory));
+        loadQueryHistory();
     }
 
 
@@ -68,11 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadQueryHistory() {
     const queryHistoryEl = document.querySelector('#query-history');
-    const queryHistory = JSON.parse(localStorage.getItem('queryHistory')) || [];
     const userName = localStorage.getItem('userName') || 'Mystery user';
+    const queryHistoryKey = `queryHistory_${userName}`;
+    const queryHistory = JSON.parse(localStorage.getItem(queryHistoryKey)) || [];
+
 
     queryHistoryEl.innerHTML = ''; //Empty element content
-    queryHistoryEl.innerHTML = `<h3>Query History for ${userName}</h3>`;
+    queryHistoryEl.innerHTML = `<h3>Welcome ${userName}</h3>`;
     queryHistory.forEach(query => {
         const listItem = document.createElement('li');
         listItem.textContent = query;
