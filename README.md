@@ -87,7 +87,7 @@ In the JavaScript deliverable I have implemented the basic functionality of the 
 - **WebSocket** - This code uses the fetchWeather function to fetch weather data, simulating the process of getting real-time data from a server.
 - **application logic** - The core interaction logic of the application is implemented through the triggering of weather queries through form submissions, the dynamic display of query results, and the loading and display of query history.
 
-# Serviice deliverable
+# Service deliverable
 
 My "index.js" configures the Express application and starts an HTTP server.
 
