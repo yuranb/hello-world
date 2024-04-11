@@ -17,6 +17,16 @@ apiRouter.get('/weather/:city', async (req, res) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
     try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (response.ok) {
+            res.json(data);
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 
 });
 
