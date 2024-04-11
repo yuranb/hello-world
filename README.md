@@ -87,4 +87,14 @@ In the JavaScript deliverable I have implemented the basic functionality of the 
 - **WebSocket** - This code uses the fetchWeather function to fetch weather data, simulating the process of getting real-time data from a server.
 - **application logic** - The core interaction logic of the application is implemented through the triggering of weather queries through form submissions, the dynamic display of query results, and the loading and display of query history.
 
+# Serviice deliverable
 
+My "index.js" configures the Express application and starts an HTTP server.
+
+I used express.static('public') to serve static resources to the front-end files
+
+My front end was calling the api directly to get the weather data, now it's been modified so that I'm getting the data through a backend proxy.
+
+I'm using the /api/weather/:city endpoint to provide a service that allows the front-end to request city-specific weather data through the back-end.
+
+My front end is now calling the /api/weather/:city endpoint set by the back end to get weather data.
