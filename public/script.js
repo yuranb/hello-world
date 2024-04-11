@@ -8,15 +8,10 @@ function login() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const weather = {
-        apiKey : "ea9f40b3e63d13331a1f878412420312",
-    };
-    
+
     // Function to fetch weather data using OpenWeatherMap API
     function fetchWeather(city,isInitial = false) {
-            fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weather.apiKey}&units=imperial`
-            )
+            fetch(`/api/weather/${city}`)
             .then((response) => {
                 if (response.status === 404) {
                     throw new Error('Invalid city name');
