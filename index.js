@@ -19,15 +19,20 @@ apiRouter.get('/weather/:city', async (req, res) => {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        if (response.ok) {
-            res.json(data);
-        } else {
-            throw new Error(data.message);
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+        if (!response.ok) {
 
+            if(response.status === 404) {
+                res.status(404).json({ error: 'Invalid city name provided.' });
+            } else {    
+                res.status(response.status).json({ error: data.message });
+            }
+            return;
+        }
+        res.json(data);
+
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching weather data.' });
+    }
 });
 
 app.use('/api', apiRouter);
