@@ -3,7 +3,6 @@ const config = require('./dbConfig.json');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
-
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db =  client.db('WeatherDB');
@@ -41,8 +40,23 @@ async function validateUser(email, password) {
     return null; 
 }
 
+async function saveQuery(email, query, results) {
+    const newQuery = {
+        email: email,
+        query: query,
+        results: results,
+    };
+    await queryHistoryCollection.insertOne(newQuery);
+}
+
+async function getQueryHistory(email) {
+    return await queryHistoryCollection.find({ email }).toArray();
+}
+
 module.exports = {
     createUser,
     findUser,
-    validateUser
+    validateUser,
+    saveQuery,
+    getQueryHistory,
 };
