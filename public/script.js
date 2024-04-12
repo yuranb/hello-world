@@ -58,33 +58,43 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchWeather('Provo', true);
 
     function saveQueryHistory(city) {
-        const userName = localStorage.getItem('userName');
-        const queryHistoryKey = `queryHistory_${userName}`;
-        const queryHistory = JSON.parse(localStorage.getItem(queryHistoryKey)) || [];
-        queryHistory.push(city);
-        localStorage.setItem(queryHistoryKey, JSON.stringify(queryHistory));
-        loadQueryHistory();
+        const userName = localStorage.getItem('userName') || 'Mystery user';
+        fetch(`/api/history/${userName}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ city: city })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to save query history');
+            }
+            loadQueryHistory();  // Reload history to update the list
+        })
+        .catch(error => {
+            console.error("Error saving weather query history:", error);
+            window.alert(error.message);
+        });
     }
-
-
-});
 
     function loadQueryHistory() {
         const queryHistoryEl = document.querySelector('#query-history');
         const userName = localStorage.getItem('userName') || 'Mystery user';
-        const queryHistoryKey = `queryHistory_${userName}`;
-        const queryHistory = JSON.parse(localStorage.getItem(queryHistoryKey)) || [];
 
-
-        queryHistoryEl.innerHTML = ''; //Empty element content
-        queryHistoryEl.innerHTML = `<h3>Welcome, ${userName}</h3>`;
-        queryHistory.forEach(query => {
-            const listItem = document.createElement('li');
-            listItem.textContent = query;
-            queryHistoryEl.appendChild(listItem);
+        fetch(`/api/history/${userName}`)
+        .then(response => response.json())
+        .then(data => {
+            queryHistoryEl.innerHTML = `<h3>Welcome, ${userName}</h3>`;
+            data.forEach(city => {
+                const listItem = document.createElement('li');
+                listItem.textContent = city;
+                queryHistoryEl.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error("Error loading weather query history:", error);
         });
     }
 
     document.addEventListener('DOMContentLoaded', loadQueryHistory);
-
-
