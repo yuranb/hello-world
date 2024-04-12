@@ -1,5 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch'; 
+
 const app = express();
 
 app.use(express.static('public'))
@@ -9,6 +10,7 @@ app.use(express.json());
 
 const port = 4000;
 
+const historyStorage = {};
 const apiRouter = express.Router();
 
 apiRouter.get('/weather/:city', async (req, res) => {
@@ -33,6 +35,24 @@ apiRouter.get('/weather/:city', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Error fetching weather data.' });
     }
+});
+
+apiRouter.post('/history/:username', (req, res) => {
+    const username = req.params.username;
+    const city = req.body.city;
+
+    if (!historyStorage[username]) {
+        historyStorage[username] = [];
+    }
+
+    historyStorage[username].push(city);
+    res.status(201).send({ message: 'History saved.' });
+});
+
+apiRouter.get('/history/:username', (req, res) => {
+    const username = req.params.username;
+    const userHistory = historyStorage[username] || [];
+    res.json(userHistory);
 });
 
 app.use('/api', apiRouter);
