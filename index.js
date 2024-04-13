@@ -1,7 +1,6 @@
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
-import express from 'express';
-import fetch from 'node-fetch'; 
+const express = require('express');
 const DB = require('./database.js');
 
 const app = express();
@@ -11,7 +10,7 @@ app.use(express.static('public'))
 // Middleware to parse JSON bodies
 app.use(express.json());
 // Use the cookie parser middleware
-app.use(cookieParser());
+//app.use(cookieParser());
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 const historyStorage = {};
