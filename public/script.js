@@ -1,11 +1,35 @@
-let userName = localStorage.getItem('userName') || 'Mystery user'; 
+document.addEventListener('DOMContentLoaded', () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+      document.querySelector('#playerName').textContent = userName;
+      setDisplay('loginControls', 'none');
+      setDisplay('playControls', 'block');
+    } else {
+      setDisplay('loginControls', 'block');
+      setDisplay('playControls', 'none');
+    }
+  });
 
-function login() {
-    const nameEl = document.querySelector("#name");
-    userName = nameEl.value;
-    localStorage.setItem("userName", nameEl.value);
-    window.location.href = "history.html";
-}
+  async function loginUser() {
+    const email = document.querySelector('#userName').value;
+    const password = document.querySelector('#userPassword').value;
+  
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+  
+    if (response.ok) {
+      localStorage.setItem('userName', email);
+      alert('Log in successfully!');
+      window.location.href = 'history.html';
+    } else {
+      alert('Login failed, please check your email and password.');
+    }
+  }
 
 document.addEventListener('DOMContentLoaded', function() {
 

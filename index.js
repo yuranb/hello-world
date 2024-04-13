@@ -26,7 +26,7 @@ apiRouter.post('/auth/register', async (req, res) => {
     }
     const newUser = await DB.createUser(email, password);
 
-    setAuthCookie(res, newUser.token); // Set the cookie for auth token
+    //setAuthCookie(res, newUser.token); // Set the cookie for auth token
     res.status(201).json({ message: 'User created', userId: newUser._id });
 });
 
@@ -43,7 +43,7 @@ apiRouter.post('/auth/login', async (req, res) => {
         res.status(401).json({ error: 'Invalid password' });
         return;
     }
-    setAuthCookie(res, user.token); // Set the cookie with user's auth token
+    //setAuthCookie(res, user.token); // Set the cookie with user's auth token
     res.status(200).json({ userId: user._id, message: 'Logged in successfully' });
 });
 
