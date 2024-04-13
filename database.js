@@ -25,6 +25,7 @@ async function createUser(email, password) {
         token: uuid.v4(),
     };
     await userCollection.insertOne(newUser);
+    
     return newUser;
     }
 
