@@ -95,6 +95,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error("Error loading weather query history:", error);
         });
-    }
+    }})
 
-    document.addEventListener('DOMContentLoaded', loadQueryHistory);
+    //document.addEventListener('DOMContentLoaded', loadQueryHistory);
