@@ -33,7 +33,19 @@ apiRouter.post('/auth/register', async (req, res) => {
 
 //user login
 apiRouter.post('/auth/login', async (req, res) => {
-
+    const { email, password } = req.body;
+    const user = await DB.findUser(email);
+    if (!user) {
+        res.status(401).json({ error: 'User not found' });
+        return;
+    }
+    const passwordValid = await bcrypt.compare(password, user.password);
+    if (!passwordValid) {
+        res.status(401).json({ error: 'Invalid password' });
+        return;
+    }
+    setAuthCookie(res, user.token); // Set the cookie with user's auth token
+    res.status(200).json({ userId: user._id, message: 'Logged in successfully' });
 });
 
 // Helper function to set auth cookie
