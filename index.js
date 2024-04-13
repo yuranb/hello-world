@@ -1,17 +1,22 @@
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
 import express from 'express';
 import fetch from 'node-fetch'; 
+const DB = require('./database.js');
 
 const app = express();
-
+// Serve up the applications static content
 app.use(express.static('public'))
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-
+// Use the cookie parser middleware
+app.use(cookieParser());
 const port = 4000;
 
 const historyStorage = {};
 const apiRouter = express.Router();
+app.use('/api', apiRouter);
 
 apiRouter.get('/weather/:city', async (req, res) => {
     const city = req.params.city;
@@ -55,7 +60,7 @@ apiRouter.get('/history/:username', (req, res) => {
     res.json(userHistory);
 });
 
-app.use('/api', apiRouter);
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

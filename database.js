@@ -25,7 +25,7 @@ async function createUser(email, password) {
         token: uuid.v4(),
     };
     await userCollection.insertOne(newUser);
-    
+
     return newUser;
     }
 
@@ -33,12 +33,13 @@ function findUser(email) {
     return userCollection.findOne({ email });
 }
 
-async function validateUser(email, password) {
-    const user = await findUser(email);
-    if (user && await bcrypt.compare(password, user.password)) {
-        return user;
+async function validateUser(email) {
+    const existuser = await findUser(email);
+    if(existuser){
+        return existuser;
+    }else{
+        return null; 
     }
-    return null; 
 }
 
 async function saveQuery(email, query, results) {
