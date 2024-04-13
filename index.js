@@ -12,11 +12,38 @@ app.use(express.static('public'))
 app.use(express.json());
 // Use the cookie parser middleware
 app.use(cookieParser());
-const port = 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 const historyStorage = {};
 const apiRouter = express.Router();
 app.use('/api', apiRouter);
+
+//user register
+apiRouter.post('/auth/register', async (req, res) => {
+    const { email, password } = req.body;
+    const existingUser = await DB.findUser(email);
+    if (existingUser) {
+        return res.status(409).json({ error: 'User already exists' });
+    }
+    const newUser = await DB.createUser(email, password);
+
+    setAuthCookie(res, newUser.token); // Set the cookie for auth token
+    res.status(201).json({ message: 'User created', userId: newUser._id });
+});
+
+//user login
+apiRouter.post('/auth/login', async (req, res) => {
+
+});
+
+// Helper function to set auth cookie
+function setAuthCookie(res, token) {
+    res.cookie('authCookieName', token, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+          });
+}
 
 apiRouter.get('/weather/:city', async (req, res) => {
     const city = req.params.city;
