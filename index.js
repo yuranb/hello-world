@@ -51,11 +51,6 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.json({ message: 'Login successful' });
 });
 
-apiRouter.delete('/logout', (_req, res) => {
-    res.clearCookie(authCookieName);
-    res.status(204).end();
-  });
-
 apiRouter.get('/weather/:city', async (req, res) => {
     const city = req.params.city;
     const apiKey = 'ea9f40b3e63d13331a1f878412420312';
@@ -98,6 +93,20 @@ apiRouter.get('/weather/:city', async (req, res) => {
         res.status(500).json({ error: 'Error fetching weather data.' });
     }
 });
+
+apiRouter.delete('/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+
+    // Finds and clears all timers with this user
+    Object.keys(userCityUpdates).forEach(key => {
+        if (key.startsWith(userToken + '-')) { 
+            clearInterval(userCityUpdates[key]);
+            delete userCityUpdates[key]; 
+        }
+    });
+
+    res.status(204).end();
+  });
 
 apiRouter.post('/history/:username', (req, res) => {
     const username = req.params.username;
