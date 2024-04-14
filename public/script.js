@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userName) {
       document.querySelector('#playerName').textContent = userName;
       setDisplay('loginControls', 'none');
-      setDisplay('playControls', 'block');
+      setDisplay('userControls', 'block');
     } else {
       setDisplay('loginControls', 'block');
-      setDisplay('playControls', 'none');
+      setDisplay('userControls', 'none');
     }
   });
 
@@ -28,6 +28,39 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'history.html';
     } else {
       alert('Login failed, please check your email and password.');
+    }
+  }
+
+async function createUser() {
+    const email = document.querySelector('#userName').value;
+    const password = document.querySelector('#userPassword').value;
+
+    const response = await fetch('/api/auth/register', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+    alert('Successful registration, please log in.');
+    setDisplay('loginControls', 'block'); 
+    setDisplay('userControls', 'none'); 
+    } else {
+    alert('Registration failed!');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('userName'); 
+    window.location.href = 'index.html'; 
+}
+
+function setDisplay(elementId, displayStyle) {
+    const element = document.querySelector(`#${elementId}`);
+    if (element) {
+      element.style.display = displayStyle;
     }
   }
 
@@ -55,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // Display fetched weather data on the webpage
     function displayWeather(data) {
+        
         const { name } = data;
         const { icon, description } = data.weather[0];
         const { temp, humidity } = data.main;
