@@ -1,4 +1,4 @@
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const DB = require('./database.js');
@@ -10,7 +10,7 @@ app.use(express.static('public'))
 // Middleware to parse JSON bodies
 app.use(express.json());
 // Use the cookie parser middleware
-//app.use(cookieParser());
+app.use(cookieParser());
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 const historyStorage = {};
@@ -26,7 +26,7 @@ apiRouter.post('/auth/register', async (req, res) => {
     }
     const newUser = await DB.createUser(email, password);
 
-    //setAuthCookie(res, newUser.token); // Set the cookie for auth token
+    setAuthCookie(res, newUser.token); // Set the cookie for auth token
     res.status(201).json({ message: 'User created', userId: newUser._id });
 });
 
@@ -43,18 +43,16 @@ apiRouter.post('/auth/login', async (req, res) => {
         res.status(401).json({ error: 'Invalid password' });
         return;
     }
-    //setAuthCookie(res, user.token); // Set the cookie with user's auth token
-    res.status(200).json({ userId: user._id, message: 'Logged in successfully' });
+    // Set the auth cookie
+    setAuthCookie(res, user.token);
+
+    res.json({ message: 'Login successful' });
 });
 
-// Helper function to set auth cookie
-function setAuthCookie(res, token) {
-    res.cookie('authCookieName', token, {
-            secure: true,
-            httpOnly: true,
-            sameSite: 'strict',
-          });
-}
+apiRouter.delete('/logout', (_req, res) => {
+    res.clearCookie(authCookieName);
+    res.status(204).end();
+  });
 
 apiRouter.get('/weather/:city', async (req, res) => {
     const city = req.params.city;
@@ -98,7 +96,14 @@ apiRouter.get('/history/:username', (req, res) => {
     res.json(userHistory);
 });
 
-
+// Helper function to set auth cookie
+function setAuthCookie(res, token) {
+    res.cookie('authCookieName', token, {
+            secure: true,
+            httpOnly: true,
+            sameSite: 'strict',
+          });
+}
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
