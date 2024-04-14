@@ -3,19 +3,22 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
-
 const app = express();
+const authCookieName = 'token'
+const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const historyStorage = {};
+const apiRouter = express.Router();
+const userCityUpdates = {};
+
 // Serve up the applications static content
 app.use(express.static('public'))
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
 // Use the cookie parser middleware
 app.use(cookieParser());
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-const historyStorage = {};
-const apiRouter = express.Router();
 app.use('/api', apiRouter);
 
 
