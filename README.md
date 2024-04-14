@@ -98,3 +98,15 @@ My front end was calling the api directly to get the weather data, now it's been
 I'm using the /api/weather/:city endpoint to provide a service that allows the front-end to request city-specific weather data through the back-end.
 
 My front end is now calling the /api/weather/:city endpoint set by the back end to get weather data.
+
+# Login deliverable
+
+I did the new user registration via the /api/auth/register endpoint.
+
+I did the authentication of existing users via the /api/auth/login endpoint.
+
+I use MongoDB to store user information and query history.
+
+The user's email and bcrypt hashed password are stored in the user's collection in MongoDB.
+
+Use the cookie-parser middleware and manage user sessions by setting cookies.
