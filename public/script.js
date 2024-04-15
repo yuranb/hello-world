@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userName = localStorage.getItem('userName');
     if (userName) {
-      document.querySelector('#playerName').textContent = userName;
       setDisplay('loginControls', 'none');
       setDisplay('userControls', 'block');
     } else {
@@ -79,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayWeather(data);
                 if (!isInitial) { // Save search history only in non-initial cases
                     saveQueryHistory(city);
+                    const username = localStorage.getItem('userName')
+                    const text = `${username} checked the weather in ${ city}`
+                    ws.send(text); 
                 }
             })
             .catch(error => {
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchBar = document.querySelector(".search-bar");
         const city = searchBar.value;
         if (city) {
-            fetchWeather(city);
+            fetchWeather(city)
             searchBar.value = ""; 
         }
     });
@@ -154,5 +156,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error("Error loading weather query history:", error);
         });
     }})
-
-    //document.addEventListener('DOMContentLoaded', loadQueryHistory);
+    
