@@ -15,3 +15,36 @@ function displayWeather(data) {
   document.querySelector(".humidity").innerText = ` ${humidity}` + "%";
   document.querySelector(".wind-speed").innerText = ` ${speed} ` + "m/s";
 }
+    
+    ws.onopen = function () {};
+    ws.onmessage = async function (e) {
+      const text =  e.data
+        if(location.pathname==='/history.html' ){
+          try{
+            const tipsText = await text.text()
+            console.log(tipsText)
+          if(tipsText.indexOf('checked the weather in')>-1){
+            console.log(tipsText)
+            tipsDom.style.display = 'block'
+            tipsDom.innerText = tipsText
+            setTimeout(() => {
+              tipsDom.style.display = 'none'
+              tipsDom.innerText=''
+            }, 3000);
+          }
+          }catch(e){
+console.log(e)
+          }
+          
+        }else if(location.pathname==='/index.html' || location.pathname==='/'){
+          displayWeather(JSON.parse(e.data))
+        }
+    };
+
+    ws.onclose = function () {
+        console.log("Connection closed.");
+    };
+
+    ws.onerror = function () {
+        console.log('Connection disconnected abnormally.')
+    }
