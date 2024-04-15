@@ -1,6 +1,7 @@
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
+const axios = require('axios')
 const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
 const app = express();
@@ -60,9 +61,9 @@ secureApiRouter.get('/weather/:city', async (req, res) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
     try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (!response.ok) {
+        const response = await axios.get(url);
+        const data = response.data
+        if (response.status!==200) {
 
             if(response.status === 404) {
                 res.status(404).json({ error: 'Invalid city name provided.' });
