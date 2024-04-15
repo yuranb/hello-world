@@ -9,6 +9,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const historyStorage = {};
 const apiRouter = express.Router();
 const userCityUpdates = {};
+const secureApiRouter = express.Router(); 
 
 // Serve up the applications static content
 app.use(express.static('public'))
@@ -20,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api', apiRouter);
-
+app.use('/api', secureApiRouter);
 
 //user register
 apiRouter.post('/auth/register', async (req, res) => {
@@ -54,7 +55,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     res.json({ message: 'Login successful' });
 });
 
-apiRouter.get('/weather/:city', async (req, res) => {
+secureApiRouter.get('/weather/:city', async (req, res) => {
     const city = req.params.city;
     const apiKey = 'ea9f40b3e63d13331a1f878412420312';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -137,6 +138,17 @@ function setAuthCookie(res, token) {
             sameSite: 'strict',
           });
 }
+
+// Authentication middleware for secureApiRouter
+secureApiRouter.use(async (req, res, next) => {
+    const authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
+});
 
 const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
