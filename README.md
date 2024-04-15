@@ -99,7 +99,7 @@ I'm using the /api/weather/:city endpoint to provide a service that allows the f
 
 My front end is now calling the /api/weather/:city endpoint set by the back end to get weather data.
 
-# Login deliverable
+# Login/database deliverable
 
 I did the new user registration via the /api/auth/register endpoint.
 
@@ -110,3 +110,13 @@ I use MongoDB to store user information and query history.
 The user's email and bcrypt hashed password are stored in the user's collection in MongoDB.
 
 Use the cookie-parser middleware and manage user sessions by setting cookies.
+
+# Websocket deliverable
+
+In my peerProxy.js, I have successfully created the WebSocket server and am listening for upgrade requests on the HTTP server to establish a WebSocket connection.
+
+In my websocket.js file, I create an instance of a WebSocket client and try to establish a connection with the server.
+
+In the peerProxy.js file, the server periodically sends weather data to all connected clients. Also, in the script.js file, clients can send data via WebSocket after checking the weather, such as the user's query history.
+
+The data received by websocket.js will be processed and displayed in various parts of the page, in addition to the HTML structures in index.html and history.html that display the data.
