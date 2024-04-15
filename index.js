@@ -8,7 +8,6 @@ const authCookieName = 'token'
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const historyStorage = {};
 const apiRouter = express.Router();
-const userCityUpdates = {};
 const secureApiRouter = express.Router(); 
 
 // Serve up the applications static content
@@ -60,9 +59,6 @@ secureApiRouter.get('/weather/:city', async (req, res) => {
     const apiKey = 'ea9f40b3e63d13331a1f878412420312';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
-    const userToken = req.cookies['authCookieName']; 
-    const updateKey = `${userToken}-${city.toLowerCase()}`; 
-
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -76,22 +72,6 @@ secureApiRouter.get('/weather/:city', async (req, res) => {
             return;
         }
         res.json(data);
-
-        clearInterval(userCityUpdates[updateKey]);
-        userCityUpdates[updateKey] = setInterval(async () => {
-            try {
-                const updateResponse = await fetch(url);
-                const updateData = await updateResponse.json();
-                if (updateResponse.ok) {
-                    broadcastWeatherUpdate(userToken, city, updateData);
-                } else {
-                    console.error('Failed to update weather:', updateData.message);
-                }
-            } catch (updateError) {
-                console.error('Error fetching weather for interval update:', updateError);
-            }
-        }, 600000); 
-
     } catch (error) {
         console.error('Error fetching weather data:', error);
         res.status(500).json({ error: 'Error fetching weather data.' });
@@ -100,15 +80,6 @@ secureApiRouter.get('/weather/:city', async (req, res) => {
 
 apiRouter.delete('/logout', (_req, res) => {
     res.clearCookie(authCookieName);
-
-    // Finds and clears all timers with this user
-    Object.keys(userCityUpdates).forEach(key => {
-        if (key.startsWith(userToken + '-')) { 
-            clearInterval(userCityUpdates[key]);
-            delete userCityUpdates[key]; 
-        }
-    });
-
     res.status(204).end();
   });
 
@@ -132,7 +103,7 @@ apiRouter.get('/history/:username', (req, res) => {
 
 // Helper function to set auth cookie
 function setAuthCookie(res, token) {
-    res.cookie('authCookieName', token, {
+    res.cookie(authCookieName, token, {
             secure: true,
             httpOnly: true,
             sameSite: 'strict',
