@@ -29,7 +29,26 @@ footer {
 }
 
 main {
-    padding: 20px;
+    padding: 40px 20px;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.about-content h2 {
+font-size: 2.2rem;
+margin-bottom: 1.5rem;
+}
+
+.about-content h3 {
+font-size: 1.8rem;
+margin-bottom: 1rem;
+}
+
+.about-content p {
+margin-bottom: 1.2rem;
 }
 
 form {
