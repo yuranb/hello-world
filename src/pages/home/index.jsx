@@ -7,7 +7,7 @@ const Home = () => {
   const [tempData,setTempData] = useState({})
   const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
   const [socket, setSocket] = useState(null);
-
+  const userName =localStorage.getItem('userName')
   function displayWeather(data) {
     const { name } = data;
     const { icon, description } = data.weather[0];
@@ -58,13 +58,13 @@ const Home = () => {
   },[])
   return (
     <div className="home">
-      <div className="btn-wrapper">
+     {!userName && <div className="btn-wrapper">
         <div className="title">
           You need to log in to check the city weather forecast
         </div>
         <Button onClick={()=>{navigate('/login')}}>Login</Button>
         <Button onClick={()=>{navigate('/registry')}}>Register</Button>
-      </div>
+      </div>}
       <div className="wrapper">
         <section className="weather-result">
           <p>
