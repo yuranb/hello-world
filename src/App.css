@@ -54,3 +54,36 @@ header{
 header a{
   color: #fff;
 }
+
+.btn-wrapper{
+  padding: 20px;
+}
+
+.btn-wrapper button{
+  margin-right: 20px;
+}
+.btn-wrapper .title{
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.default-city{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.default-city .content{
+  width: 500px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+}
+.city,.icon,.desc,.temperature,.humidity,.wind{
+  
+  font-size: 16px;
+  word-break: 2px;
+  text-align: left;
+  margin-bottom: 20px;
+}

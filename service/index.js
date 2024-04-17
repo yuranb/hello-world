@@ -1,6 +1,7 @@
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
+const cors = require('cors')
 const axios = require('axios')
 const DB = require('./database.js');
 const { peerProxy } = require('./peerProxy.js');
@@ -10,7 +11,7 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 const historyStorage = {};
 const apiRouter = express.Router();
 const secureApiRouter = express.Router(); 
-
+app.use(cors())
 // Serve up the applications static content
 app.use(express.static('public'))
 

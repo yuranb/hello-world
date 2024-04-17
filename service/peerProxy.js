@@ -31,7 +31,6 @@ function peerProxy(httpServer) {
     const connection = { id: uuid.v4(), alive: true, ws: ws };
     connections.push(connection);
     ws.on('message', function message(data) {
-     
       connections.forEach((c) => {
         if (c.id !== connection.id) {
           c.ws.send(data);

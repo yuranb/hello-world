@@ -54,11 +54,14 @@ async function saveQuery(email, query, results) {
 async function getQueryHistory(email) {
     return await queryHistoryCollection.find({ email }).toArray();
 }
-
+function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+  }
 module.exports = {
     createUser,
     findUser,
     validateUser,
     saveQuery,
     getQueryHistory,
+    getUserByToken
 };
