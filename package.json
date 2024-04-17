@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
@@ -12,7 +13,7 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "vite",
     "build": "react-scripts build"
   },
   "eslintConfig": {

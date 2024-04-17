@@ -92,7 +92,7 @@ const Home = () => {
             Humidity: <span className="humidity">{tempData.humidity}</span>
           </p>
           <p>
-            Wind Speed: <span className="wind-speed">{tempData.seed}</span>
+            Wind Speed: <span className="wind-speed">{tempData.speed}</span>
           </p>
         </section>
       </div>
