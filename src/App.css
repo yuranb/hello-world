@@ -52,3 +52,106 @@ header{
 header a{
   color: #fff;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+header, footer {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+main {
+  padding: 40px 20px;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-content h2 {
+font-size: 2.2rem;
+margin-bottom: 1.5rem;
+}
+
+.about-content h3 {
+font-size: 1.8rem;
+margin-bottom: 1rem;
+}
+
+.about-content p {
+margin-bottom: 1.2rem;
+}
+
+form {
+  margin-top: 10px;
+}
+
+input[type="text"], input[type="password"], button {
+  padding: 8px;
+  margin: 5px 0; 
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  nav a {
+      display: block;
+      margin: 5px 0;
+  }
+}
+
+#home .weather-search {
+  display: none;
+}
+
+.weather-result, .login-section {
+  margin-bottom: 20px;
+}
+
+.weather-result img {
+  width: 50px; 
+}
+
+.weather-result p, .database-data-placeholder ul, .websocket-data-placeholder p {
+  margin: 10px 0;
+}
+
+#tips{
+  display: none;
+ position:absolute;
+ top: 10px;
+ left: 50%;
+ transform: translateX(-50%);
+ background-color: #fff;
+ padding: 10px 30px;
+ border-radius: 8px;
+}
