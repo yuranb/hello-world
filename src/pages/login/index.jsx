@@ -42,7 +42,7 @@ const Login = ()=>{
             />
           </div>
           <button className="btn btn-primary mr-3" onClick={()=>{loginUser()}}>Login</button>
-          <button className="btn btn-secondary" onClick={navigate('/registry')}>
+          <button className="btn btn-secondary" onClick={()=>navigate('/registry')}>
             Register
           </button>
         </div>
