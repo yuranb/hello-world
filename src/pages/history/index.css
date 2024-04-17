@@ -1,4 +1,7 @@
 .history{
-    height: 80vh;
-    overflow-y:auto;
-  }
+  height: 80vh;
+  overflow-y:auto;
+}
+.query-title{
+  font-weight: 700;
+}

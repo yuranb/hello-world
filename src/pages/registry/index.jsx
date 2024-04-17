@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import './index.css'
 const Registry = () => {
   const navigate = useNavigate()
 

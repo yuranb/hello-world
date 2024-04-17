@@ -150,9 +150,8 @@ const History = () => {
           </p>
         </section>
       </div>}
-      </main>
       <section>
-            <h2>Query History</h2>
+            <h2 className="query-title">Query History</h2>
             <ul id="query-history">
             <h3>Welcome {userName}</h3>
               {
@@ -162,6 +161,8 @@ const History = () => {
               }
             </ul>
         </section>
+      </main>
+
     </div>
   );
 };

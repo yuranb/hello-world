@@ -71,7 +71,7 @@ const Home = () => {
         <Button onClick={()=>{navigate('/registry')}}>Register</Button>
       </div>:
        <div id="userControls">
-       <div id="userName">{userName}</div>
+       <div id="userName"> Welcome {userName}</div>
        <button className="btn btn-primary mr-3" onClick={()=>{navigate('/history')}}>Search</button>
        <button className="btn btn-secondary" onClick={()=>logout()}>Logout</button>
      </div>
