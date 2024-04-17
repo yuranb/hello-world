@@ -29,6 +29,9 @@ function App() {
               ))
             }  
           </Routes>
+          <footer>
+              <a href="https://github.com/yuranb/startup">GitHub</a>
+          </footer>
     </div>
   )
 }

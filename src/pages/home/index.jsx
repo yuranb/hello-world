@@ -23,6 +23,11 @@ const Home = () => {
     }) 
   }
 
+  function logout() {
+    localStorage.removeItem('userName'); 
+    navigate('/'); 
+}
+
   useEffect(()=>{
     fetch('/api/weather/Provo')
     .then((response) => {
@@ -58,13 +63,19 @@ const Home = () => {
   },[])
   return (
     <div className="home">
-     {!userName && <div className="btn-wrapper">
+     {!userName ? <div className="btn-wrapper">
         <div className="title">
           You need to log in to check the city weather forecast
         </div>
         <Button onClick={()=>{navigate('/login')}}>Login</Button>
         <Button onClick={()=>{navigate('/registry')}}>Register</Button>
-      </div>}
+      </div>:
+       <div id="userControls">
+       <div id="userName">{userName}</div>
+       <button className="btn btn-primary mr-3" onClick={()=>{navigate('/history')}}>Search</button>
+       <button className="btn btn-secondary" onClick={()=>logout()}>Logout</button>
+     </div>
+      }
       <div className="wrapper">
         <section className="weather-result">
           <p>

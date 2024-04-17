@@ -1,6 +1,7 @@
 import Registry from '../pages/registry';
 import Login from '../pages/login'
 import Home from '../pages/home'
+import History from '../pages/history'
 const routes = [
   {
     path:'/',
@@ -17,6 +18,10 @@ const routes = [
   {
     path:'/login',
     element:Login
+  },
+  {
+    path:'/history',
+    element:History
   }
 ]
 
