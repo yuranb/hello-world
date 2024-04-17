@@ -1,3 +1,24 @@
-.login{
+.btn-wrapper{
+    padding: 20px;
+  }
+  
+  .btn-wrapper button{
+    margin-right: 20px;
+  }
+  .btn-wrapper .title{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  
+  .wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+  .weather-result{
+    width: 500px;
     padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
