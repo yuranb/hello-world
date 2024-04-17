@@ -120,3 +120,15 @@ In my websocket.js file, I create an instance of a WebSocket client and try to e
 In the peerProxy.js file, the server periodically sends weather data to all connected clients. Also, in the script.js file, clients can send data via WebSocket after checking the weather, such as the user's query history.
 
 The data received by websocket.js will be processed and displayed in various parts of the page, in addition to the HTML structures in index.html and history.html that display the data.
+
+# React deliverable
+
+I have converted the application to use React.
+
+I using Vite as the build tool.
+
+My project structure includes multiple React components under the src/pages directory with separate components for different parts of the application like Home, Login, Registry, History, and About. Each component has its own JSX file.
+
+I have a routes/index.js file that configures routing for the application.
+
+In App.jsx, I use several hooks including useState, useEffect, and useNavigate.
